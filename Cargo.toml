@@ -1,7 +1,7 @@
 [package]
 name = "decimal-clock"
 version = "0.1.0"
-authors = ["dysbulic <dys@dhappy.org>"]
+authors = ["dysbulic <d@dhappy.org>"]
 edition = "2021"
 resolver = "2"
 rust-version = "1.71"
@@ -30,9 +30,9 @@ embassy = ["esp-idf-svc/embassy-sync", "esp-idf-svc/critical-section", "esp-idf-
 [dependencies]
 log = { version = "0.4", default-features = false }
 esp-idf-svc = { version = "0.48.1" }
-embedded-graphics = "0.8.1"
 esp-idf-hal = "0.43.1"
 gc9a01-rs = "0.2.1"
+embedded-graphics = "0.8.1"
 rand = "0.8.5"
 
 [build-dependencies]

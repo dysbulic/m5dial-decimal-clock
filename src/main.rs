@@ -5,18 +5,20 @@ use esp_idf_hal::spi::{
     config::{Config, Mode, Phase, Polarity},
     SpiDeviceDriver,
 };
-use esp_idf_hal::{/* i2c, */prelude::*};
+use esp_idf_hal::prelude::*;
 use esp_idf_svc::{
     eventloop::EspSystemEventLoop, hal::peripherals::Peripherals, timer::EspTaskTimerService,
 };
 
 use embedded_graphics::{
     pixelcolor::Rgb565,
-    prelude::{Point,/* RgbColor, */Size},
+    prelude::{Point, Size},
     primitives::{Circle, Primitive, PrimitiveStyleBuilder, Rectangle},
     Drawable,
 };
 use gc9a01::{mode::BufferedGraphics, prelude::*, Gc9a01, SPIDisplayInterface};
+
+use std::cmp;
 
 type BoxedDisplayDriver<'a> = Box<
     Gc9a01<
@@ -29,6 +31,7 @@ type BoxedDisplayDriver<'a> = Box<
     >,
 >;
 
+#[allow(unused_parens)]
 fn draw<I: WriteOnlyDataCommand, D: DisplayDefinition>(
     display: &mut Gc9a01<I, D, BufferedGraphics<D>>,
     tick: u32,
@@ -51,7 +54,9 @@ fn draw<I: WriteOnlyDataCommand, D: DisplayDefinition>(
         ))
         .build();
 
-    let cdiameter = 20;
+    let cdiameter: i32 = (
+        <u32 as TryInto<i32>>::try_into(cmp::min(w, h)).unwrap() / 10
+    );
 
     Circle::new(
         Point::new(119 - cdiameter / 2 + 40, 119 - cdiameter / 2 + 40),
