@@ -13,6 +13,7 @@ I've not been able to find any examples of controlling a M5 Dial using Rust, and
 ## Changelog
 
 * 2024⁄6⁄18: `v0.1.0`
+  * Generated an app using the [esp-idf template](https://github.com/esp-rs/esp-idf-template/).
   * Copied sample from [IniterWorker/esp32-s3-touch-lcd-1-28](https://github.com/IniterWorker/esp32-s3-touch-lcd-1-28/).
   * Pulled appropriate pin information from [M5 Dial User Demos](https://github.com/m5stack/M5Dial-UserDemo/blob/main/main/hal/display/hal_display.hpp#L20-L27).
   * Randomized colors on each draw.
